@@ -1,20 +1,19 @@
-﻿
-/*
- This class will updates references of given items, with respect to given source(s) and destination(s).
- * 
- * Case coverd : Copy, Clone, Duplicate, Add from template, Item from branch.
- * 
- * Inspired from : http://reasoncodeexample.com/2013/01/13/changing-sitecore-item-references-when-creating-copying-duplicating-and-cloning/
- * 
- * Reasons to create :We implemented above solution but as number of site increate we feel slowness in whole environment while copying site.
- * Thus we need soluion which should be very fast,smart and supports multiple sources that makes it flexible for almost all scenario.
- * 
- * Fast and Smart : It is not using GetDecendent Api which is very expensive API in case of site copy in Foundry or duplicating whole site.
- * It only scans destination items(s) to process and only focuses on items which needs update/replacable means it calculates once if item is ignored then it will be ignoree for other items too to save time.
- * 
- * Multiple Source : In Sitecore foundry while creating site from other site type, we need multiple source like Site Root, Site Media Root to update references,
- * this can be applicable to any multi site solution.
- * 
+﻿/*
+This class will updates references of given items, with respect to given source(s) and destination(s).
+  
+Case covered : Copy, Clone, Duplicate, Add from template, Item from branch.
+  
+Inspired from : http://reasoncodeexample.com/2013/01/13/changing-sitecore-item-references-when-creating-copying-duplicating-and-cloning/
+  
+Reasons to create :We implemented above solution but as number of site increase we feel slowness in whole environment while copying site.
+Thus we need solution which should be very fast,smart and supports multiple sources that makes it flexible for almost all scenario.
+  
+Fast and Smart : It is not using GetDecendent API which is very expensive API in case of site copy in Foundry or duplicating whole site.
+It only scans destination items(s) to process and only focuses on items which needs update/replaceable means it calculates once if item is ignored then it will be ignored for other items too to save time.
+  
+Multiple Source : In Sitecore foundry while creating site from other site type, we need multiple source like Site Root, Site Media Root to update references,
+this can be applicable to any multi site solution.
+  
  */
 
 namespace Sitecore.SharedModule.Updater
@@ -43,10 +42,10 @@ namespace Sitecore.SharedModule.Updater
 		//List of ignored/excluded item e.g. device id or any id which is not required for replacement process. Also gains performance.
 		private List<string> _ignoreList = new List<string>();
 		private bool _deep = false;
-		
+
 		public int Count = 0;
 
-	
+
 		public string TimeTaken { get; set; }
 		private Func<Field, bool> FieldFilter { get; set; }
 		/// <summary>
@@ -80,7 +79,7 @@ namespace Sitecore.SharedModule.Updater
 		/// <param name="start">Starting Item from where reference update process</param>
 		/// <param name="roots"> List multiple root. e.g. Soure->Destination, Source Media Library -> Destination,etc in case of multiple sites.</param>
 		/// <param name="deep">Traverse all children under selected start item.</param>
-		
+
 
 		/// <summary>
 		/// Start Reference Update process.
@@ -326,7 +325,7 @@ namespace Sitecore.SharedModule.Updater
 		{
 			return item.Versions.GetVersions(true);
 		}
-		
+
 		//Reads all field of given item including Clone items.
 		private IEnumerable<Field> GetFieldsToProcess(Item item)
 		{
