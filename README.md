@@ -13,5 +13,7 @@ It only scans destination items(s) to process and only focuses on items which ne
   
 Multiple Source : In Sitecore foundry while creating site from other site type, we need multiple source like Site Root, Site Media Root to update references,
 this can be applicable to any multi site solution.
+
+Supports : Sitecore 6.4.0 onwards as it uses xmldelta feature.
   
  
