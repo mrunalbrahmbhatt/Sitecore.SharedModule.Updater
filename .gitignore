@@ -5,3 +5,4 @@ Sitecore.SharedModule.ReferenceUpdater.Foundry/bin/
 Website/bin/Website.dll.config
 Sitecore.SharedModule.ReferenceUpdater.CMS/bin/
 *.pdb
+Website/bin/
