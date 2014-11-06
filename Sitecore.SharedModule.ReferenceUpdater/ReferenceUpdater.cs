@@ -16,7 +16,7 @@ this can be applicable to any multi site solution.
   
  */
 
-namespace Sitecore.SharedModule.Updater
+namespace Sitecore.SharedModule.ReferenceUpdater
 {
 
 	using Sitecore.Data;
@@ -34,13 +34,13 @@ namespace Sitecore.SharedModule.Updater
 
 	public class ReferenceUpdater
 	{
-		private Database _master = null;
-		private Item _start = null;
+		private Database _masterDB = null;
+		private Item _startItem = null;
 		//List Items to process and can be replacable.
 		private Dictionary<string, EqualItems> _result = new Dictionary<string, EqualItems>();
 		private Dictionary<string, string> _roots = new Dictionary<string, string>();
 		//List of ignored/excluded item e.g. device id or any id which is not required for replacement process. Also gains performance.
-		private List<string> _ignoreList = new List<string>();
+		private List<string> _ignoredItemIds = new List<string>();
 		private bool _deep = false;
 
 		public int Count = 0;
@@ -56,7 +56,7 @@ namespace Sitecore.SharedModule.Updater
 		/// <param name="deep"></param>
 		public ReferenceUpdater(Item start, Dictionary<string, string> roots, bool deep = false)
 		{
-			_start = start;
+			_startItem = start;
 			_roots = roots;
 			_deep = deep;
 			Count = 0;
@@ -96,10 +96,10 @@ namespace Sitecore.SharedModule.Updater
 				FieldFilter = ExcludeStandardSitecoreFieldsExceptLayout;
 			}
 
-			if (_start != null && _roots != null)
+			if (_startItem != null && _roots != null)
 			{
-				_master = _start.Database;
-				FixReferences(_start, _roots, _deep);
+				_masterDB = _startItem.Database;
+				FixReferences(_startItem, _roots, _deep);
 			}
 
 			stopWatch.Stop();
@@ -118,7 +118,7 @@ namespace Sitecore.SharedModule.Updater
 		private void FixReferences(Item start, Dictionary<string, string> roots, bool deep = false)
 		{
 			Count++;
-			ScanItem(start);
+			ProcessItem(start);
 			if (deep && start.HasChildren)
 			{
 				var childrens = start.Children;
@@ -129,10 +129,10 @@ namespace Sitecore.SharedModule.Updater
 			}
 		}
 		/// <summary>
-		/// Scan Item 
+		/// Process Item 
 		/// </summary>
 		/// <param name="contextItem"></param>
-		private void ScanItem(Item contextItem)
+		private void ProcessItem(Item contextItem)
 		{
 			if (contextItem == null)
 				return;
@@ -148,18 +148,6 @@ namespace Sitecore.SharedModule.Updater
 			}
 		}
 
-		public void ReplaceItemReferences(Item item)
-		{
-			IEnumerable<Field> fields = GetFieldsToProcess(item);
-			foreach (Field field in fields)
-			{
-				foreach (Item itemVersion in GetVersionsToProcess(item))
-				{
-					Field itemVersionField = itemVersion.Fields[field.ID];
-					ProcessField(itemVersionField);
-				}
-			}
-		}
 		private string GetInitialFieldValue(Field field)
 		{
 			return field.GetValue(true, true);
@@ -276,7 +264,7 @@ namespace Sitecore.SharedModule.Updater
 		{
 			foreach (string key in keys)
 			{
-				if (!_ignoreList.Contains(key))
+				if (!_ignoredItemIds.Contains(key))
 				{
 					if (!_result.ContainsKey(key))
 					{
@@ -294,7 +282,7 @@ namespace Sitecore.SharedModule.Updater
 								}
 							}
 						}
-						_ignoreList.Add(key);
+						_ignoredItemIds.Add(key);
 					}
 				}
 			}
@@ -313,9 +301,9 @@ namespace Sitecore.SharedModule.Updater
 			{
 				ID itemId = idOrPath.OrID();
 				if (!itemId.IsNull)
-					return itemId.GetItem(_master);
+					return itemId.GetItem(_masterDB);
 
-				return _master.GetItem(idOrPath.Trim('"'));
+				return _masterDB.GetItem(idOrPath.Trim('"'));
 
 			}
 			return null;
@@ -384,7 +372,7 @@ namespace Sitecore.SharedModule.Updater
 					if (path.ToLower().Contains(root.Key.ToLower()))
 					{
 						string equalPath = path.Replace(root.Key, root.Value, true);
-						return _master.GetItem(equalPath);
+						return _masterDB.GetItem(equalPath);
 					}
 				}
 			}

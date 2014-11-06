@@ -1,7 +1,7 @@
 ﻿
 
 
-namespace Sitecore.SharedModule.Updater
+namespace Sitecore.SharedModule.ReferenceUpdater
 {
 	using Sitecore.Data;
 	using Sitecore.Data.Items;
