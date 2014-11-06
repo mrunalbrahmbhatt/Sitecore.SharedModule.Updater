@@ -76,6 +76,8 @@
   <ItemGroup>
     <Content Include="App_Config\Include\Sitecore.SharedModule.ReferenceUpdater.Foundry.config" />
     <Content Include="App_Config\Include\Sitecore.SharedModule.ReferenceUpdater.CMS.config" />
+    <Content Include="Packages\Sitecore.SharedModule.ReferenceUpdater.CMS.zip" />
+    <Content Include="Packages\Sitecore.SharedModule.ReferenceUpdater.Foundry.zip" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
