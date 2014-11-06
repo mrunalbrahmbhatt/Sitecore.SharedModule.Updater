@@ -1,5 +1,5 @@
 
-This Solution contains Sitecore Item Reference Updater which will updates references of given items, with respect to given source(s) and destination(s).
+This Solution contains Sitecore Item **Reference Updater** which will updates references of given item and its childrens(n level), with respect to given source(s) and destination(s).
 
 Projects : 
 -----------
@@ -41,31 +41,31 @@ http://reasoncodeexample.com/2013/01/13/changing-sitecore-item-references-when-c
 Reasons to create:
 ------------------
 
-We implemented above solution but as number of site increase we feel slowness in whole environment while copying site.
+We implemented above solution but as number of sites increase we feel slowness in whole environment while copying site.
 Thus we need solution which should be very fast,smart and supports multiple sources that makes it flexible for almost all scenario.
   
 Fast and Smart:
 --------------
-It is not using GetDecendent API which is very expensive API in case of site copy in Foundry or duplicating whole site.
+It is not using **GetDecendents** API which is very expensive API in case of site copy in Foundry or duplicating whole site.
 It only scans destination items(s) to process and only focuses on items which needs update/replaceable means it calculates once if item is ignored then it will be ignored for other items too to save time.
   
 Multiple Source:
 ----------------
-In Sitecore foundry while creating site from other site type, we need multiple source like Site Root, Site Media Root to update references,
-this can be applicable to any multi site solution.
+In Sitecore foundry while creating site from other site type, we need multiple sources like Site Root, Site Media Root, source path and destination path to update references,
+this can be applicable to any multi-site/single site solution.
 
 Supports:
 ---------
-Sitecore 6.4.0 onwards and Sitecore Foundry 4.1 as it uses xmldelta feature.
+**Sitecore 6.4.0** onwards and **Sitecore Foundry 4.1** as it uses **xmldelta** feature.
   
 Thanks to my company [Switch I.T.](http://www.switchit.com) for allowing me to share my work with you all. 
 
 Disclaimer:
 -----------
 
-This solution is not tested thoroughly, so if you find any issue, we are not responsible for it.
+This solution is not tested thoroughly, thus we are not responsible for any damage.
 
 Report Issue:
 -------------
 
-Kindly drop me an [email](mailto:it.mrunal@gmail.com) for reporting issue or suggestion, I will try my best to help.
+Kindly report issue or suggestion if any, I will try my best to help.
