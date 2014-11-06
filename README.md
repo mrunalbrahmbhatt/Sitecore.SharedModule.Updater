@@ -1,7 +1,7 @@
 
 This Solution contains Sitecore Item Reference Updater which will updates references of given items, with respect to given source(s) and destination(s).
 
-#Projects : 
+Projects : 
 -----------
 
 1. Sitecore.SharedModule.ReferenceUpdater : Main Reference Updater logic.
@@ -10,7 +10,7 @@ This Solution contains Sitecore Item Reference Updater which will updates refere
 4. Website : Contains config file in include folder for Foundry and Sitecore CMS.
 
 
-#How to use:
+How to use:
 -----------
 
 Sitecore CMS
