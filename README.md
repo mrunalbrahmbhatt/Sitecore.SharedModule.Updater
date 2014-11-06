@@ -32,7 +32,10 @@ Sitecore Foundry
 
 Case covered:
 --------------
-Copy, Clone, Duplicate, Add from template, Item from branch.
+* Copy
+* Clone
+* Duplicate
+* Add from template or Item from branch.
   
 Inspired By:
 -------------
