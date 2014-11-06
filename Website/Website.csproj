@@ -64,9 +64,10 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Sitecore.SharedModule.ReferenceUpdater.Foundry.config" />
     <Content Include="App_Config\Include\Sitecore.SharedModule.ReferenceUpdater.CMS.config" />
