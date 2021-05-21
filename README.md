@@ -87,9 +87,10 @@ Thanks to my company [Switch I.T.](http://www.switchit.com) for allowing me to s
 FAQs:
 ---------
 **Can this library updates base templates, insert options and item template ?**
+
 Yes
   
-Thanks to my company [Switch I.T.](http://www.switchit.com) for allowing me to share my work with you all.
+
 
 Disclaimer:
 -----------
