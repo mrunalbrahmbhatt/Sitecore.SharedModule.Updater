@@ -6,3 +6,8 @@ Website/bin/Website.dll.config
 Sitecore.SharedModule.ReferenceUpdater.CMS/bin/
 *.pdb
 Website/bin/
+/.vs/Sitecore.SharedModule.ReferenceUpdater
+/Sitecore.SharedModule.ReferenceUpdater/obj/Debug
+/Sitecore.SharedModule.ReferenceUpdater.CMS/obj/Debug
+/Sitecore.SharedModule.ReferenceUpdater.Foundry/obj/Debug
+/Website/obj/Debug
