@@ -36,6 +36,7 @@ Case covered:
 * Clone
 * Duplicate
 * Add from template or Item from branch.
+* Manual.
   
 Inspired By:
 -------------
@@ -56,6 +57,26 @@ Multiple Source:
 ----------------
 In Sitecore foundry while creating site from other site type, we need multiple sources like Site Root, Site Media Root, source path and destination path to update references,
 this can be applicable to any multi-site/single site solution.
+
+```c#
+protected void btnRefUpdate_Click(object sender, EventArgs e)
+{
+    //This is manual approch,where developer can add multiple source and destination mapping applied to the given root item.
+	lblTime.Text = string.Empty;
+    var db = Factory.GetDatabase("master");
+    var item = db.GetItem("Path to newly copied root Item.");
+    Dictionary<string, string> mappings = new Dictionary<string, string>();
+    //Below is the mapping of path from Source -> Destination replacement.
+    //e.g. /Sitecore/Content/Site1 -> /Sitecore/Content/Site2
+    //e.g. /Sitecore/Template/Site1 -> /Sitecore/Template/Site2
+    //e.g. /Sitecore/Template/Branches/Site1 -> /Sitecore/Template/Branches/Site2
+    mappings.Add("Path to Source Root1", "Path to Newly mapped Root(e.g.Templates)");
+	mappings.Add("Path to Source Root2", "Path to Newly mapped Root(e.g.Branches)");
+    ReferenceUpdater refUpdater = new ReferenceUpdater(item, mappings, true);
+    refUpdater.Start();
+	lblTime.Text = refUpdater.TimeTaken;
+}
+```
 
 Supports:
 ---------
